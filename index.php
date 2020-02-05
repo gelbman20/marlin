@@ -68,7 +68,7 @@
                 $pdo = createConnection();
               ?>
               
-              <?php foreach ( $pdo->query( "SELECT * FROM `comments`" ) as $user ) { ?>
+              <?php foreach ( $pdo->query( "SELECT * FROM `comments` ORDER BY id DESC" ) as $user ) { ?>
                 <div class="media">
                   
                   <?php
