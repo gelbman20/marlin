@@ -1,5 +1,5 @@
 <?php
-  
+  include_once "functions.php";
   include_once "database.php";
   
   $name = $_POST[ 'name' ];
@@ -15,6 +15,10 @@
   $pdo = createConnection();
   
   $pdo->query("INSERT INTO `comments` (`id`, `userID`, `name`, `date`, `message`) VALUES (NULL, '0', '$name', '$date', '$message')");
+  
+  if(!isset($_SESSION['message-success'])) {
+    $_SESSION['message-success'] = true;
+  }
   
   header( "Location: index.php" );
   exit();

@@ -1,4 +1,5 @@
 <?php
+  include_once "functions.php";
   include_once "database.php";
 ?>
 <!DOCTYPE html>
@@ -56,9 +57,13 @@
             <div class="card-header"><h3>Комментарии</h3></div>
 
             <div class="card-body">
-              <div class="alert alert-success" role="alert">
-                Комментарий успешно добавлен
-              </div>
+              <?php if ( $_SESSION[ 'message-success' ] ) : ?>
+                <div class="alert alert-success" role="alert">
+                  Комментарий успешно добавлен
+                </div>
+                <?php unset( $_SESSION[ 'message-success' ] ); ?>
+              <?php endif; ?>
+              
               <?php
                 $pdo = createConnection();
               ?>
@@ -107,5 +112,6 @@
     </div>
   </main>
 </div>
+<script src="js/script.js"></script>
 </body>
 </html>
