@@ -1,3 +1,6 @@
+<?php
+  include_once "database.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,35 +60,23 @@
                 Комментарий успешно добавлен
               </div>
               <?php
-                $users = array(
-                  array(
-                    "name" => "John Duo",
-                    "date" => "12/10/2025",
-                    "image" => "img/no-user.jpg",
-                    "message" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aspernatur, ullam doloremque deleniti, sequi obcaecati."
-                  ),
-                  array(
-                    "name" => "Andrii Helever",
-                    "date" => "12/10/2025",
-                    "image" => "img/no-user.jpg",
-                    "message" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aspernatur, ullam doloremque deleniti, sequi obcaecati."
-                  ),
-                  array(
-                    "name" => "Bandit Estumaloko",
-                    "date" => "12/10/2025",
-                    "image" => "img/no-user.jpg",
-                    "message" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aspernatur, ullam doloremque deleniti, sequi obcaecati."
-                  )
-                )
+                $pdo = createConnection();
               ?>
               
-              <?php foreach ($users as $user) { ?>
+              <?php foreach ( $pdo->query( "SELECT * FROM `comments`" ) as $user ) { ?>
                 <div class="media">
-                  <img src="<?= $user["image"] ?>" class="mr-3" alt="..." width="64" height="64">
+                  
+                  <?php
+                    if ( !isset( $user[ "image" ] ) ) {
+                      $user[ "image" ] = 'img/no-user.jpg';
+                    }
+                  ?>
+
+                  <img src="<?= $user[ "image" ] ?>" class="mr-3" alt="..." width="64" height="64">
                   <div class="media-body">
-                    <h5 class="mt-0"><?= $user["name"] ?></h5>
-                    <span><small><?= $user["date"] ?></small></span>
-                    <p><?= $user["message"] ?></p>
+                    <h5 class="mt-0"><?= $user[ "name" ] ?></h5>
+                    <span><small><?= $user[ "date" ] ?></small></span>
+                    <p><?= $user[ "message" ] ?></p>
                   </div>
                 </div>
               <?php } ?>
