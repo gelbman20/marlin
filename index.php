@@ -75,12 +75,20 @@
                     if ( !isset( $user[ "image" ] ) ) {
                       $user[ "image" ] = 'img/no-user.jpg';
                     }
+                    
+                    $date = $user[ "date" ];
+                    $re = '/\d{2}(-\d{2}){2}/m';
+                    preg_match_all($re, $date, $matches, PREG_SET_ORDER, 0);
+                    $date = $matches[0][0];
+                    
+                    $re = '/-/';
+                    $date = preg_replace($re, "/", $date);
                   ?>
 
                   <img src="<?= $user[ "image" ] ?>" class="mr-3" alt="..." width="64" height="64">
                   <div class="media-body">
                     <h5 class="mt-0"><?= $user[ "name" ] ?></h5>
-                    <span><small><?= $user[ "date" ] ?></small></span>
+                    <span><small><?= $date ?></small></span>
                     <p><?= $user[ "message" ] ?></p>
                   </div>
                 </div>
