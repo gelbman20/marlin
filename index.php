@@ -102,7 +102,7 @@
             <div class="card-header"><h3>Оставить комментарий</h3></div>
 
             <div class="card-body">
-              <form class="form-comment" action="/add-comment.php" method="post">
+              <form class="form-comment" action="forms/add-comment.php" method="post">
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Имя</label>
                   <input name="name" class="form-control form-comment-name" id="exampleFormControlTextarea1"/>

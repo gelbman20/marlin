@@ -1,3 +1,6 @@
+<?php
+include_once "functions.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,18 +56,24 @@
             <div class="card-header">Register</div>
 
             <div class="card-body">
-              <form method="POST" action="">
+
+                <?php if ( $_SESSION[ 'user_is_exits' ] ) : ?>
+                  <div class="alert alert-danger" role="alert">
+                    Такой пользователь уже есть!
+                  </div>
+                    <?php unset( $_SESSION[ 'user_is_exits' ] ); ?>
+                <?php endif; ?>
+
+              <form method="POST" action="forms/form-register.php">
 
                 <div class="form-group row">
                   <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                   <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name=""
-                           autofocus>
-
+                    <input id="name" type="text" class="form-control @error('name') @enderror" name="name">
                     <span class="invalid-feedback" role="alert">
-                                                    <strong>Ошибка валидации</strong>
-                                                </span>
+                      <strong>Ошибка валидации</strong>
+                    </span>
                   </div>
                 </div>
 

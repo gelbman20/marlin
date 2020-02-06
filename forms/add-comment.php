@@ -1,13 +1,13 @@
 <?php
-  include_once "functions.php";
-  include_once "database.php";
+  include_once "../functions.php";
+  include_once "../database.php";
   
   $name = $_POST[ 'name' ];
   $message = $_POST[ 'message' ];
   $date = date('Y-m-d H:i:s');
   
   if ( empty( $name ) && empty( $message ) ) {
-    header( "Location: index.php" );
+    header( "Location: ../index.php" );
     exit();
   }
   
@@ -20,6 +20,6 @@
     $_SESSION['message-success'] = true;
   }
   
-  header( "Location: index.php" );
+  header( "Location: ../index.php" );
   exit();
 
