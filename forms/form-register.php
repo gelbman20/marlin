@@ -24,5 +24,8 @@ foreach ($pdo->query("SELECT * FROM `users` WHERE `email` = '$email'") as $row) 
 
 
 $pdo->query("INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES (NULL, '$name', '$email', '$password_hash')");
-header( "Location: ../register.php" );
+if(!isset($_SESSION['user_is_added'])) {
+    $_SESSION['user_is_added'] = true;
+}
+header( "Location: ../index.php" );
 exit();

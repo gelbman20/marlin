@@ -53,6 +53,12 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-12">
+            <?php if ( $_SESSION[ 'user_is_added' ] ) : ?>
+              <div class="alert alert-success" role="alert">
+                Ваш аккаунт успешно создан
+              </div>
+                <?php unset( $_SESSION[ 'user_is_added' ] ); ?>
+            <?php endif; ?>
           <div class="card">
             <div class="card-header"><h3>Комментарии</h3></div>
 
