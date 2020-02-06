@@ -102,14 +102,20 @@
             <div class="card-header"><h3>Оставить комментарий</h3></div>
 
             <div class="card-body">
-              <form action="/add-comment.php" method="post">
+              <form class="form-comment" action="/add-comment.php" method="post">
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Имя</label>
-                  <input name="name" class="form-control" id="exampleFormControlTextarea1"/>
+                  <input name="name" class="form-control form-comment-name" id="exampleFormControlTextarea1"/>
+                  <span class="invalid-feedback" role="alert">
+                    <strong>Ошибка валидации</strong>
+                  </span>
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Сообщение</label>
-                  <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea name="message" class="form-control form-comment-message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <span class="invalid-feedback" role="alert">
+                    <strong>Ошибка валидации</strong>
+                  </span>
                 </div>
                 <button type="submit" class="btn btn-success">Отправить</button>
               </form>
