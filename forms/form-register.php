@@ -38,13 +38,22 @@ if (empty($password_confirmation)) {
   }
 }
 
+if (mb_strlen(strval($password)) < 6 || mb_strlen(strval($password_confirmation)) < 6) {
+  if(!isset($_SESSION['register-password-validation'])) {
+    $_SESSION['register-password-validation'] = 'Длина пароля должна быть больше 6 символов';
+  }
+  if(!isset($_SESSION['register-password-confirmation-validation'])) {
+    $_SESSION['register-password-confirmation-validation'] = 'Длина пароля должна быть больше 6 символов';
+  }
+}
+
 if($password !== $password_confirmation) {
   if(!isset($_SESSION['password-indent'])) {
     $_SESSION['password-indent'] = 'Порали не совпадают';
   }
 }
 
-if(empty($name) || empty($email) || empty($password) || empty($password_confirmation) || !filter_var($email, FILTER_VALIDATE_EMAIL) || $password !== $password_confirmation) {
+if(empty($name) || empty($email) || empty($password) || empty($password_confirmation) || !filter_var($email, FILTER_VALIDATE_EMAIL) || $password !== $password_confirmation || mb_strlen($password) < 6 || mb_strlen($password_confirmation) < 6) {
   header( "Location: ../register.php" );
   exit();
 }
