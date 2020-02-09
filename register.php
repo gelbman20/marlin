@@ -57,49 +57,64 @@ include_once "functions.php";
 
             <div class="card-body">
 
-                <?php if ( $_SESSION[ 'user_is_exits' ] ) : ?>
-                  <div class="alert alert-danger" role="alert">
-                    Такой пользователь уже есть!
-                  </div>
-                    <?php unset( $_SESSION[ 'user_is_exits' ] ); ?>
-                <?php endif; ?>
+              <?php if ( $_SESSION[ 'user_is_exits' ] ) : ?>
+                <div class="alert alert-danger" role="alert">
+                  <?= $_SESSION['user_is_exits'] ?>
+                </div>
+                  <?php unset( $_SESSION[ 'user_is_exits' ] ); ?>
+              <?php endif; ?>
+  
+              <?php if ( $_SESSION[ 'password-indent' ] ) : ?>
+                <div class="alert alert-danger" role="alert">
+                  <?= $_SESSION['password-indent'] ?>
+                </div>
+                <?php unset( $_SESSION[ 'password-indent' ] ); ?>
+              <?php endif; ?>
 
               <form method="POST" action="forms/form-register.php">
 
                 <div class="form-group row">
                   <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-
                   <div class="col-md-6">
-                    <input id="name" type="text" class="form-control @error('name') @enderror" name="name">
+                    <input id="name" type="text" class="<?php echo (isset($_SESSION['register-name-validation'])) ? 'is-invalid' : ''?> form-control @error('name') @enderror" name="name">
                     <span class="invalid-feedback" role="alert">
-                      <strong>Ошибка валидации</strong>
+                      <strong><?= $_SESSION[ 'register-name-validation' ] ?></strong>
                     </span>
+                    <?php unset( $_SESSION[ 'register-name-validation' ] ); ?>
                   </div>
                 </div>
-
                 <div class="form-group row">
                   <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-
                   <div class="col-md-6">
-                    <input id="email" type="email" class="form-control" name="email">
+                    <input id="email" type="text" class="<?php echo (isset($_SESSION['register-email-validation'])) ? 'is-invalid' : ''?> form-control" name="email">
+                    <span class="invalid-feedback" role="alert">
+                      <strong><?= $_SESSION[ 'register-email-validation' ] ?></strong>
+                    </span>
+                    <?php unset( $_SESSION[ 'register-email-validation' ] ); ?>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
                   <div class="col-md-6">
-                    <input id="password" type="password" class="form-control " name="password"
+                    <input id="password" type="password" class="<?php echo (isset($_SESSION['register-password-validation'])) ? 'is-invalid' : ''?> form-control " name="password"
                            autocomplete="new-password">
+                    <span class="invalid-feedback" role="alert">
+                      <strong><?= $_SESSION[ 'register-password-validation' ] ?></strong>
+                    </span>
+                    <?php unset( $_SESSION[ 'register-password-validation' ] ); ?>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-
                   <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                    <input id="password-confirm" type="password" class="<?php echo (isset($_SESSION['register-password-confirmation-validation'])) ? 'is-invalid' : ''?> form-control" name="password_confirmation"
                            autocomplete="new-password">
+                    <span class="invalid-feedback" role="alert">
+                      <strong><?= $_SESSION[ 'register-password-confirmation-validation' ] ?></strong>
+                    </span>
+                    <?php unset( $_SESSION[ 'register-password-confirmation-validation' ] ); ?>
                   </div>
                 </div>
 
